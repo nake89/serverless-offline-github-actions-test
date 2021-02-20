@@ -18,6 +18,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: node sls-offline-test-runner.js
     - run: npm test
       env:
         CI: true

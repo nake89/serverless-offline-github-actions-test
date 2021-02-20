@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "c48c0656-a9d7-4f92-8b32-e2be4fa4c9c3",
+		"name": "sls-offline-testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Hello test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Hello is World\", function () {",
+							"    pm.expect(jsonData.hello).to.eql(\"world\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Goodbye test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Jack is Joker\", function () {",
+							"    pm.expect(jsonData.name).to.eql(\"Jack Napier is joker\");",
+							"});",
+							"",
+							"pm.test(\"Token is a token\", function () {",
+							"    pm.expect(jsonData.token).to.eql(\"token123\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jack Napier\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/goodbye",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"goodbye"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
