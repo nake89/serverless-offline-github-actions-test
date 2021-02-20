@@ -2,7 +2,7 @@ export async function hello(event) {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      hello: "world",
+      hello: "world. test making test fail",
     }),
   };
   return response;
@@ -14,7 +14,7 @@ export async function goodbye(event) {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      name: body.name + " is joker",
+      name: body.name + " is joker. test making test fail",
       token: token,
     }),
   };
